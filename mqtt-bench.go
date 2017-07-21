@@ -143,7 +143,7 @@ func Execute(exec func(clients []MQTT.Client, opts ExecOptions, param ...string)
 	DisconnectClients(clients)
 
 	// 処理結果を出力する。
-	duration := (endTime.Sub(startTime)).Nanoseconds() / int64(1000000) // nanosecond -> millisecond
+	duration := (endTime.Sub(startTime)).Nanoseconds() / float64(1000000) // nanosecond -> millisecond
 	throughput := float64(totalCount) / float64(duration) * 1000        // messages/sec
 	fmt.Printf("\nResult : broker=%s, clients=%d, totalCount=%d, duration=%dms, throughput=%.2fmessages/sec\n",
 		opts.Broker, opts.ClientNum, totalCount, duration, throughput)
